@@ -21,13 +21,13 @@ Feature: codebreaker submits guess
     Scenarios: two numbers correct
       | code | guess | mark |
       | 1234 | 1255  | ++   |
-      | 1234 | 1355  | +-   |
+      | 1234 | 3255  | +-   |
       | 1234 | 2355  | --   |
 
     Scenarios: three numbers correct
       | code | guess | mark |
       | 1234 | 1235  | +++- |
-      | 1234 | 1245  | ++-  |
+      | 1234 | 2235  | ++-  |
       | 1234 | 1425  | +--  |
       | 1234 | 4325  | ---  |
 
