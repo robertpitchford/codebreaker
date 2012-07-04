@@ -23,13 +23,9 @@ module Codebreaker
     end
 
     def total_matches(guess, method)
-      matches = 0
-      (0..3).each do |index|
-        if send(method, guess, index)
-          matches += 1
-        end
+      (0..3).inject(0) do |count, index|
+        count + (send(method, guess, index) ? 1 : 0)
       end
-      matches
     end
 
     def number_match?(guess, index)
