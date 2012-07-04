@@ -10,19 +10,14 @@ module Codebreaker
     end
 
     def total_match_count
-      count = 0
-      temp_secret_chrs = @secret.chars.to_a
-      guess_chrs = @guess.chars.to_a
-      guess_chrs.each_index do |i_guess|
-        temp_secret_chrs.each_index do |i_secret|
-          if temp_secret_chrs[i_secret] == @guess[i_guess]
-            temp_secret_chrs.delete_at(i_secret)
-            count += 1
-            break
-          end
-        end
+      secret = @secret.chars.to_a
+      @guess.chars.to_a.inject(0) do |count, g|
+        count + (delete_first(g, secret) ? 1 : 0)
       end
-      count
+    end
+
+    def delete_first(c, code)
+      code.delete_at(code.index(c)) if code.index(c)
     end
 
     def exact_match_count
