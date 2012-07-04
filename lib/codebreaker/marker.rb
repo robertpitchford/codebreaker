@@ -5,11 +5,11 @@ module Codebreaker
       @guess = guess
     end
 
-    def total_number_matches
+    def number_match_count
       total_matches(:number_match?)
     end
 
-    def total_exact_matches
+    def exact_match_count
       total_matches(:exact_match?)
     end
 
