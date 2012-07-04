@@ -15,23 +15,21 @@ module Codebreaker
     end
 
     def total_number_matches(guess)
-      number_match_count = 0
-      (0..3).each do |index|
-        if number_match?(guess, index)
-          number_match_count += 1
-        end
-      end
-      number_match_count
+      total_matches(guess, :number_match?)
     end
 
     def total_exact_matches(guess)
-      exact_match_count = 0
+      total_matches(guess, :exact_match?)
+    end
+
+    def total_matches(guess, method)
+      matches = 0
       (0..3).each do |index|
-        if exact_match?(guess, index)
-          exact_match_count += 1
+        if send(method, guess, index)
+          matches += 1
         end
       end
-      exact_match_count
+      matches
     end
 
     def number_match?(guess, index)
