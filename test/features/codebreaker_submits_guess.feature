@@ -26,7 +26,7 @@ Feature: codebreaker submits guess
 
     Scenarios: three numbers correct
       | code | guess | mark |
-      | 1234 | 1235  | +++- |
+      | 1234 | 1235  | +++  |
       | 1234 | 2235  | ++-  |
       | 1234 | 1425  | +--  |
       | 1234 | 4325  | ---  |

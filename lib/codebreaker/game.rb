@@ -11,23 +11,31 @@ module Codebreaker
     end
 
     def guess(guess)
-      mark = ""
-      (0..3).each do |index|
-        if exact_match?(guess, index)
-          mark << "+"
-        elsif number_match?(guess, index)
-          mark << "-"
-        end
-      end
-      @output.puts sort_marks(mark)
+      @output.puts "+" * total_exact_matches(guess) + "-" * total_number_matches(guess)
     end
 
-    def sort_marks(mark)
-      mark.chars.sort.join
+    def total_number_matches(guess)
+      number_match_count = 0
+      (0..3).each do |index|
+        if number_match?(guess, index)
+          number_match_count += 1
+        end
+      end
+      number_match_count
+    end
+
+    def total_exact_matches(guess)
+      exact_match_count = 0
+      (0..3).each do |index|
+        if exact_match?(guess, index)
+          exact_match_count += 1
+        end
+      end
+      exact_match_count
     end
 
     def number_match?(guess, index)
-      @secret.include? guess[index]
+      @secret.include?(guess[index]) && !exact_match?(guess, index)
     end
 
     def exact_match?(guess, index)
