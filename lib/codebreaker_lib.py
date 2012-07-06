@@ -8,4 +8,4 @@ class codebreaker(object):
         pass
 
     def guess(self, guess):
-        pass
+        self.output.write("\n")

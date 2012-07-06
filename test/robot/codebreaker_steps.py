@@ -24,4 +24,4 @@ def I_guess(guess):
     cb.guess(guess)
 
 def the_mark_should_be(mark):
-    pass
+    verify(output).write(mark + "\n")

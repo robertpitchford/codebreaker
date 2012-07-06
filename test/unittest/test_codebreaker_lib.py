@@ -20,3 +20,4 @@ class TestSubmitGuess(object):
     def should_return_empty_string_for_no_matches(self):
         cb = codebreaker(self.output)
         cb.guess("5555")
+        verify(self.output).write("\n")

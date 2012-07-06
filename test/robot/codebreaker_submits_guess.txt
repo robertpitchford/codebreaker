@@ -1,8 +1,33 @@
 ***Settings***
-Library	codebreaker_steps
+Library	        codebreaker_steps
 
-***Test Cases***
-Codebreaker submits guess
-	Given the secret code       1234
-	When I guess                5555
-	Then the mark should be     ${EMPTY}
+***Test Cases***    Code    Guess   Mark
+No matches          [Template]      Codebreaker guesses code
+                    1234    5555    ${empty}
+
+One match           [Template]      Codebreaker guesses code
+                    1234    1555    +
+                    1234    5155    -
+
+Two matches         [Template]      Codebreaker guesses code
+                    1234    1255    ++
+                    1234    1525    +-
+                    1234    5125    --
+
+Three matches       [Template]      Codebreaker guesses code
+                    1234    1235    +++
+                    1234    1245    ++-
+                    1234    1325    +--
+                    1234    3215    ---
+
+Four matches        [Template]      Codebreaker guesses code
+                    1234    1234    ++++
+                    1234    1243    ++--
+                    1234    1342    +---
+                    1234    4321    ----
+
+***Keywords***
+Codebreaker guesses code    [Arguments]     ${code}     ${guess}    ${mark}
+    Given the secret code       ${code}
+    When I guess                ${guess}
+    Then the mark should be     ${mark}
