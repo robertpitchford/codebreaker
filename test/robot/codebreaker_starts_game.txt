@@ -1,0 +1,8 @@
+***Settings***
+Library	codebreaker_steps
+
+***Test Cases***
+Running codebreaker
+	Given codebreaker is not running
+	When I start a new game
+	Then I should see                   Welcome to Codebreaker!
