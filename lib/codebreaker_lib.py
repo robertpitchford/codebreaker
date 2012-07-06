@@ -4,8 +4,11 @@ class codebreaker(object):
         self.output.write("Welcome to Codebreaker!\n")
         self.output.write("Enter guess:\n")
 
-    def start(self):
-        pass
+    def start(self, secret):
+        self.secret = secret
 
     def guess(self, guess):
-        self.output.write("\n")
+        if guess[0] in self.secret:
+            self.output.write("+\n")
+        else:
+            self.output.write("\n")

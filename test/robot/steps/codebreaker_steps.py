@@ -18,7 +18,7 @@ def I_should_see(expected):
 def the_secret_code(secret):
     global cb
     cb = codebreaker(output)
-    cb.start()
+    cb.start(secret)
 
 def I_guess(guess):
     cb.guess(guess)

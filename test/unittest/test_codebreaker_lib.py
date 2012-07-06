@@ -16,8 +16,13 @@ class TestStartGame(object):
 class TestSubmitGuess(object):
     def setup(self):
         self.output = mock()
+        self.cb = codebreaker(self.output)
+        self.cb.start("1234")
 
-    def should_return_empty_string_for_no_matches(self):
-        cb = codebreaker(self.output)
-        cb.guess("5555")
+    def should_return_correct_mark_no_matches(self):
+        self.cb.guess("5555")
         verify(self.output).write("\n")
+
+    def should_return_correct_mark_for_one_exact_match(self):
+        self.cb.guess("1555")
+        verify(self.output).write("+\n")

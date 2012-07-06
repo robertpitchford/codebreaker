@@ -1,5 +1,5 @@
 ***Settings***
-Library	        codebreaker_steps
+Library	        steps/codebreaker_steps.py
 
 ***Test Cases***    Code    Guess   Mark
 No matches          [Template]      Codebreaker guesses code
