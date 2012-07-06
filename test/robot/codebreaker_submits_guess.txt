@@ -1,0 +1,8 @@
+***Settings***
+Library	codebreaker_steps
+
+***Test Cases***
+Codebreaker submits guess
+	Given the secret code       1234
+	When I guess                5555
+	Then the mark should be     ${EMPTY}
