@@ -8,9 +8,11 @@ class codebreaker(object):
         self.secret = secret
 
     def guess(self, guess):
-        if guess[0] == self.secret[0]:
-            self.output.write("+\n")
-        elif guess[0] in self.secret:
-            self.output.write("-\n")
-        else:
-            self.output.write("\n")
+        marks = ""
+        for i in range(0, 4):
+            if guess[i] == self.secret[i]:
+                marks += "+"
+            elif guess[i] in self.secret:
+                marks += "-"
+
+        self.output.write(marks + "\n")

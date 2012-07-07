@@ -24,9 +24,13 @@ class TestSubmitGuess(object):
         verify(self.output).write("\n")
 
     def should_return_correct_mark_for_one_exact_match(self):
-        self.cb.guess("1555")
+        self.cb.guess("5255")
         verify(self.output).write("+\n")
 
     def should_return_correct_mark_for_one_number_match(self):
-        self.cb.guess("2555")
+        self.cb.guess("5155")
         verify(self.output).write("-\n")
+
+    def should_return_correct_mark_for_all_exact_matches(self):
+        self.cb.guess("1234")
+        verify(self.output).write("++++\n")

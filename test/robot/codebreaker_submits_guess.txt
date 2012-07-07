@@ -18,7 +18,7 @@ Three matches       [Template]      Codebreaker guesses code
                     1234    1235    +++
                     1234    1245    ++-
                     1234    1325    +--
-                    1234    3215    ---
+                    1234    3125    ---
 
 Four matches        [Template]      Codebreaker guesses code
                     1234    1234    ++++
