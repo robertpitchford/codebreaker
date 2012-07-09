@@ -38,3 +38,17 @@ class TestSubmitGuess(object):
     def should_return_correct_mark_for_one_number_match_with_duplicates(self):
         self.cb.guess("1111")
         verify(self.output).write("+\n")
+
+class TestCorrectGuess(object):
+    def setup(self):
+        self.output = mock()
+        self.cb = codebreaker(self.output)
+        self.cb.start("1234")
+
+    def should_return_true_for_correct_guess(self):
+        CORRECT_GUESS = "1234"
+        assert self.cb.guess(CORRECT_GUESS) == True
+
+    def should_return_false_for_incorrect_guess(self):
+        INCORRECT_GUESS = "4321"
+        assert self.cb.guess(INCORRECT_GUESS) == False

@@ -7,4 +7,6 @@ cb = codebreaker(sys.stdout)
 cb.start("1234")
 while True:
     guess = sys.stdin.readline()
-    cb.guess(guess)
+    if cb.guess(guess):
+        print "Correct! You cracked the code\n"
+        sys.exit(0)

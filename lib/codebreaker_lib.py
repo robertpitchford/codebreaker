@@ -34,4 +34,6 @@ class codebreaker(object):
         return guess[i] in self.secret
 
     def guess(self, guess):
-        self.output.write("+" * self.exact_match_count(guess) + "-" * self.number_match_count(guess) + "\n")
+        marks = "+" * self.exact_match_count(guess) + "-" * self.number_match_count(guess) + "\n"
+        self.output.write(marks)
+        return marks == "++++\n"
