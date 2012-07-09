@@ -1,30 +1,37 @@
 #noinspection PyUnresolvedReferences
 import test_helper
-from codebreaker_lib import codebreaker
 from mockito import *
+from codebreaker_lib import codebreaker
+from codebreaker_wrapper import codebreaker_wrapper
 
-output = None
-cb = None
+class State(object):
+    pass
+
+def reset_state():
+    global state
+    state = State()
 
 def codebreaker_is_not_running():
     pass
 
 def I_start_a_new_game():
-    global output
-    output = mock()
-    codebreaker(output)
+    reset_state()
+    state.output = mock()
+    input = mock()
+    when(input).readline().thenReturn("5555\n")
+    codebreaker_wrapper().start(input, state.output, False)
 
 def I_should_see(expected):
-    verify(output).write(contains(expected))
+    verify(state.output).write(contains(expected))
 
 def the_secret_code(secret):
-    global cb, output
-    output = mock() # mock needs to be reset between calls
-    cb = codebreaker(output)
-    cb.start(secret)
+    reset_state()
+    state.output = mock()
+    state.cb = codebreaker(state.output)
+    state.cb.start(secret)
 
 def I_guess(guess):
-    cb.guess(guess)
+    state.cb.guess(guess)
 
 def the_mark_should_be(mark):
-    verify(output).write(mark + "\n")
+    verify(state.output).write(mark + "\n")

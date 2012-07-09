@@ -1,12 +1,7 @@
 import sys
 sys.path.append("lib")
 
-from codebreaker_lib import codebreaker
+from codebreaker_wrapper import codebreaker_wrapper
 
-cb = codebreaker(sys.stdout)
-cb.start("1234")
-while True:
-    guess = sys.stdin.readline()
-    if cb.guess(guess):
-        print "Correct! You cracked the code\n"
-        sys.exit(0)
+sys.exit(codebreaker_wrapper().start(sys.stdin, sys.stdout))
+
