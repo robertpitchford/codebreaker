@@ -1,5 +1,3 @@
-from codebreaker_lib import codebreaker
-from mockito import *
 from marker import Marker
 
 class TestMarker(object):

@@ -2,14 +2,27 @@ import random
 from codebreaker_lib import codebreaker
 
 class codebreaker_wrapper(object):
-    def start(self, input, output, codebreakerWantsToPlay=True):
-        cb = codebreaker(output)
-        cb.start(self.generate_secret())
-        while codebreakerWantsToPlay:
-            guess = input.readline()
-            if cb.guess(guess):
-                print "Correct! You cracked the code\n"
-                return 0
+    def __init__(self, input, output):
+        self.input = input
+        self.output = output
+        self.isPlaying=False
+
+        self.cb = codebreaker(self.output)
+
+    def new_game(self):
+        self.isPlaying=True
+        self.cb.start(self.generate_secret())
+
+    def start(self):
+        while self.isPlaying:
+            self.next_guess()
+
+    def next_guess(self):
+        guess = self.input.readline()
+        self.cb.guess(guess)
+        if self.cb.has_won(guess):
+            self.output.write("Correct! You cracked the code\n")
+            self.isPlaying = False
 
     def generate_secret(self):
         choices = list("123456")

@@ -47,8 +47,8 @@ class TestCorrectGuess(object):
 
     def should_return_true_for_correct_guess(self):
         CORRECT_GUESS = "1234"
-        assert self.cb.guess(CORRECT_GUESS) == True
+        assert self.cb.has_won(CORRECT_GUESS) == True
 
     def should_return_false_for_incorrect_guess(self):
         INCORRECT_GUESS = "4321"
-        assert self.cb.guess(INCORRECT_GUESS) == False
+        assert self.cb.has_won(INCORRECT_GUESS) == False

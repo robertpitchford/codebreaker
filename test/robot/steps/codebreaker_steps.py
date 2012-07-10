@@ -18,8 +18,7 @@ def I_start_a_new_game():
     reset_state()
     state.output = mock()
     input = mock()
-    when(input).readline().thenReturn("5555\n")
-    codebreaker_wrapper().start(input, state.output, False)
+    codebreaker_wrapper(input, state.output)
 
 def I_should_see(expected):
     verify(state.output).write(contains(expected))

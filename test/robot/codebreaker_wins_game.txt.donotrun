@@ -1,0 +1,9 @@
+***Settings***
+Library	steps/codebreaker_steps.py
+
+***Test Cases***
+Running codebreaker
+    Given the secret code       1234
+    When I guess                1234
+	Then I should see           Correct! You cracked the code
+	And the game should end

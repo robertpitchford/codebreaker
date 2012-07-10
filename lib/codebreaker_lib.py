@@ -8,9 +8,11 @@ class codebreaker(object):
 
     def start(self, secret):
         self.secret = secret
+        self.marker = Marker(self.secret)
 
     def guess(self, guess):
-        marker = Marker(self.secret)
-        marks = "+" * marker.exact_match_count(guess) + "-" * marker.number_match_count(guess) + "\n"
+        marks = "+" * self.marker.exact_match_count(guess) + "-" * self.marker.number_match_count(guess) + "\n"
         self.output.write(marks)
-        return marks == "++++\n"
+
+    def has_won(self, guess):
+        return self.marker.exact_match_count(guess) == len(self.secret)
