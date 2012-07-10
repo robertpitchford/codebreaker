@@ -18,7 +18,9 @@ class codebreaker_wrapper(object):
             self.next_guess()
 
     def next_guess(self):
+        print "HELLO"
         guess = self.input.readline()
+        print "guess: " + guess
         self.cb.guess(guess)
         if self.cb.has_won(guess):
             self.output.write("Correct! You cracked the code\n")
@@ -31,7 +33,6 @@ class codebreaker_wrapper(object):
             r = self.randrange(len(choices))
             secret += choices[r]
             del choices[r]
-
         return secret
 
     def randrange(self, size):

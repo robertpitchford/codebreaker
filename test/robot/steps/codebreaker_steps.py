@@ -34,3 +34,20 @@ def I_guess(guess):
 
 def the_mark_should_be(mark):
     verify(state.output).write(mark + "\n")
+
+def codebreaker_is_started():
+    reset_state()
+    state.SECRET = "1234"
+    state.input = mock()
+    state.output = mock()
+    state.wrapper = codebreaker_wrapper(state.input, state.output)
+    state.wrapper.generate_secret = lambda: state.SECRET
+    state.wrapper.new_game()
+
+
+def I_guess_the_correct_code():
+    when(state.input).readline().thenReturn(state.SECRET + "\n")
+    state.wrapper.next_guess()
+
+def the_game_should_end():
+    assert state.wrapper.isPlaying == False
