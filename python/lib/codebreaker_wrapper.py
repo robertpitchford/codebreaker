@@ -1,8 +1,10 @@
 import random
+import sys
 from codebreaker_lib import codebreaker
+import output_cli
 
 class codebreaker_wrapper(object):
-    def __init__(self, input, output):
+    def __init__(self, input=sys.stdin, output=output_cli.OutputCli(sys.stdout)):
         self.input = input
         self.output = output
         self.isPlaying=False
@@ -12,6 +14,7 @@ class codebreaker_wrapper(object):
     def new_game(self):
         self.isPlaying=True
         self.cb.start(self.generate_secret())
+        return self
 
     def start(self):
         while self.isPlaying:
@@ -21,7 +24,7 @@ class codebreaker_wrapper(object):
         guess = self.input.readline()
         self.cb.guess(guess)
         if self.cb.has_won(guess):
-            self.output.write("Correct! You cracked the code\n")
+            self.output.report_win()
             self.isPlaying = False
 
     def generate_secret(self):

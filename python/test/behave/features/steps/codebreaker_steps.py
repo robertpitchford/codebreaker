@@ -1,5 +1,5 @@
-##noinspection PyUnresolvedReferences
 import test_helper
+from output_cli import OutputCli
 from mockito import mock, verify, contains, never, when
 from behave import step
 import codebreaker_lib
@@ -12,8 +12,9 @@ def given_codebreaker_is_not_running(context):
 @step(u'I start a new game')
 def when_i_start_a_new_game(context):
     context.output = mock()
+    reporter = OutputCli(context.output)
     input = mock()
-    codebreaker_wrapper.codebreaker_wrapper(input, context.output)
+    codebreaker_wrapper.codebreaker_wrapper(input, reporter)
 
 @step(u'I should see "{msg}"')
 def then_i_should_see_msg(context, msg):
@@ -35,7 +36,7 @@ def I_guess(context, guess):
 
 @step(u'the mark should be "{mark}"')
 def the_mark_should_be_mark(context, mark):
-    verify(context.output).write(mark + "\n")
+    verify(context.output).report_matches(mark)
 
 @step(u'the mark should be ""')
 def the_mark_should_be(context):
@@ -46,7 +47,8 @@ def codebreaker_is_started(context):
     context.SECRET = "1234"
     context.input = mock()
     context.output = mock()
-    context.wrapper = codebreaker_wrapper.codebreaker_wrapper(context.input, context.output)
+    reporter = OutputCli(context.output)
+    context.wrapper = codebreaker_wrapper.codebreaker_wrapper(context.input, reporter)
     context.wrapper.generate_secret = lambda: context.SECRET
     context.wrapper.new_game()
 
